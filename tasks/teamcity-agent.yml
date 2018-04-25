@@ -38,12 +38,12 @@
     dest: "/etc/default/teamcity-agent"
     mode: 0644
 
-- name: "Put TeamCity Agent service file (sysv)"
+- name: "Put TeamCity Agent service file (upstart)"
   template:
     src: "teamcity-agent.conf.j2"
     dest: "/etc/init/teamcity-agent.conf"
     mode: 0644
-  when: "ansible_service_mgr != 'systemd'"
+  when: "ansible_service_mgr == 'upstart'"
 
 - name: "Put TeamCity Agent service file (systemd)"
   template:
